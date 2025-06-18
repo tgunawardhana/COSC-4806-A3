@@ -39,6 +39,7 @@ class User {
 		} else {
 			if(isset($_SESSION['failedAuth'])) {
 				$_SESSION['failedAuth'] ++; //increment
+        
 			} else {
 				$_SESSION['failedAuth'] = 1;
 			}
