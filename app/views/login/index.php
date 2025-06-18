@@ -23,7 +23,17 @@
             <br>
 		    <button type="submit" class="btn btn-primary">Login</button>
 		</fieldset>
+			<br>
 		</form> 
+			<p style="color:red;"><?= $failed ?></p>
+			<p style="color:green;"><?= $success ?></p>
+			
+		<form action="/signup" method="post" >
+			<button type="submit" class="btn btn-secondary btn-sm">Sign Up</button>
+		</form>
+
+		<br>
+			
 	</div>
 </div>
     <?php require_once 'app/views/templates/footer.php' ?>
