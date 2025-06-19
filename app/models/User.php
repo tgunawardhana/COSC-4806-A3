@@ -18,7 +18,13 @@ class User {
       return $rows;
     }
 
-
+    public function attemptlog($username, $status){
+        $db = db_connect();
+      $statement = $db->prepare("insert into login_attempts (username, status) VALUES (:username, :status);");
+      $statement->bindParam(':username', $username);
+      $statement->bindParam(':status', $status);
+      $statement->execute();
+    }
 
     public function authenticate($username, $password) {
         /*
@@ -36,7 +42,7 @@ class User {
   			$_SESSION['auth'] = 1;
   			$_SESSION['username'] = ucwords($username);
   			unset($_SESSION['failedAuth']);
-    
+        $this->attemptlog($username, 'success');
   			header('Location: /home');
   
   			die;
@@ -48,7 +54,7 @@ class User {
   				$_SESSION['failedAuth'] = 1;
   			}
         
-        
+        $this->attemptlog($username, 'failed');
   			header('Location: /login');
   			die;
   		}
