@@ -29,8 +29,8 @@ class Signup extends Controller {
         }
 
         $_SESSION['failed'] = 0;
-        $user = $this->model('User');
-        $user->register_user($username, $password); 
+        $signupUser = $this->model('Register');
+        $signupUser->register_user($username, $password); 
         
     }
   
