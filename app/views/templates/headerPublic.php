@@ -8,50 +8,43 @@ if (isset($_SESSION['auth']) == 1) {
 $failed = "";
 $success = "";
 
-  if (isset($_SESSION['failedAuth']) && $_SESSION['failedAuth'] >= 1) {
-    $failed = "Username or password is incorrect.
-    Unsuccessful attempts " . $_SESSION['failed_attempts'] . ".";
-    $_SESSION['failed'] = 0;
-  }
-
-    else if (isset($_SESSION['signup_complete']) && $_SESSION['signup_complete'] == 1) {
+  
+    if (isset($_SESSION['signup_complete']) && $_SESSION['signup_complete'] == 1) {
       $success = "User registered successfully.";
       $_SESSION['signup_complete'] = 0;
     }
-
-  else {
-    $failed = "";
-    $success = "";
-  }
-
-
+    else if (isset($_SESSION['userlocked']) && $_SESSION['userlocked'] == 1){
+      $failed = "User is locked. Please try again after 1 minute.";
+      $_SESSION['userlocked'] = 0;
+    }
+      
 // Sign up validations
-if (isset($_SESSION['error_signup']) && $_SESSION['error_signup'] == 1) {
-  $failed = "Username or password cannot be empty.";
-  $_SESSION['error_signup'] = 0;
-}
-else if (isset($_SESSION['error_signup']) && $_SESSION['error_signup'] == 2) {
-    $failed = "Password should be atleast 10 characters long.";
-    $_SESSION['error_signup'] = 0;
-}
-else if (isset($_SESSION['error_signup']) && $_SESSION['error_signup'] == 3) {
-    $failed = "Passwords does not match. Try again.";
-    $_SESSION['error_signup'] = 0;
-  }
-else if (isset($_SESSION['error_signup']) && $_SESSION['error_signup'] == 4) {
-    $failed = "Username exists. Try another one";
-    $_SESSION['error_signup'] = 0;
-  }
-else {
-  $failed = "";
-}
-
+    else if (isset($_SESSION['error_signup']) && $_SESSION['error_signup'] == 1) {
+        $failed = "Username or password cannot be empty.";
+        $_SESSION['error_signup'] = 0;
+    }
+    else if (isset($_SESSION['error_signup']) && $_SESSION['error_signup'] == 2) {
+        $failed = "Password should be atleast 10 characters long.";
+        $_SESSION['error_signup'] = 0;
+    }
+    else if (isset($_SESSION['error_signup']) && $_SESSION['error_signup'] == 3) {
+        $failed = "Passwords does not match. Try again.";
+        $_SESSION['error_signup'] = 0;
+      }
+    else if (isset($_SESSION['error_signup']) && $_SESSION['error_signup'] == 4) {
+        $failed = "Username exists. Try another one";
+        $_SESSION['error_signup'] = 0;
+      }
+    else {
+      $failed = "";
+      $success = "";
+    }
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="app/views/templates/styles.css" rel="stylesheet">
     <link rel="icon" href="/favicon.png">
     <title>COSC 4806</title>
     <meta charset="UTF-8">
