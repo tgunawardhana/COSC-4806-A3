@@ -23,8 +23,8 @@
             <br>
 		    <button type="submit" class="btn btn-primary">Login</button>
 		</fieldset>
-			<p style="color:red;"><?= $failed ?></p>
-			<p style="color:green;"><?= $success ?></p>
+			<p class="alert-danger"><?= $failed ?></p>
+			<p class="alert-success"><?= $success ?></p>
 		</form> 
 			<br>
 
@@ -34,7 +34,7 @@
 					</div>
 			</div>
 		<form action="/signup" method="post" >
-			<button type="submit" class="btn btn-secondary btn-sm">Sign Up</button>
+			<button type="submit" class="btn btn-secondary">Sign Up</button>
 		</form>
  <br>
 	
